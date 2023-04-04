@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Event {
+    id          Int        @id @unique @default(autoincrement())
+    Name        String
+    Date        DateTime
+    Description String
+    TimePoint   DateTime
+    Organizer   Organizer? @relation("OrganizerRel")
+    Location    Location?  @relation("LocationRel")
+}
+
+model Organizer {
+    id    Int    @id @unique @default(autoincrement())
+    Name  String
+    Email String
+    Phone String
+
+    eventId Int?   @unique
+    event   Event? @relation(name: "OrganizerRel", fields: [eventId], references: [id])
+}
+
+model Location {
+    id        Int    @id @unique @default(autoincrement())
+    Name      String
+    longitude Float
+    latitude  Float
+
+    eventId Int?   @unique
+    event   Event? @relation(name: "LocationRel", fields: [eventId], references: [id])
+}
