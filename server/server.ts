@@ -1,9 +1,8 @@
 require('dotenv').config({ path: './.env' })
 
-import express, { Express, Request, Response } from 'express';
+import express, { } from 'express';
 const app = express()
 import cors from 'cors';
-import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import prisma from './prisma/Prisma';

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "set NODE_ENV='prod' && node server",
-    "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\" "
+    "dev": "npm run build && concurrently \"npx tsc --watch\" \"nodemon -q build/server.js\" "
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

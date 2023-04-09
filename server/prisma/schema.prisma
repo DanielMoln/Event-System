@@ -15,7 +15,7 @@ model Event {
     Name        String
     Date        DateTime
     Description String
-    TimePoint   DateTime
+    TimePoint   String
     Organizer   Organizer? @relation("OrganizerRel")
     Location    Location?  @relation("LocationRel")
 }

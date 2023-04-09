@@ -1,8 +1,9 @@
-import { Router, Request, Response } from "express";
+import express, { Router, Request, Response } from "express";
 import { createEvent, deleteEvent, editEvent, getAllEvent } from "../../services/Event.service";
 import APIResponse from "../../models/APIResponse.model";
 
-module.exports = (router: Router) => {
+module.exports = () => {
+    const router: Router = express.Router();
 
     router.get('/', async (req: Request, res: Response) => {
         const response = Object.assign({}, APIResponse);
@@ -22,7 +23,7 @@ module.exports = (router: Router) => {
         }
     });
 
-    router.get('/create', async (req: Request, res: Response) => {
+    router.post('/create', async (req: Request, res: Response) => {
         const response = Object.assign({}, APIResponse);
 
         try {
@@ -66,7 +67,7 @@ module.exports = (router: Router) => {
         }
     });
 
-    router.delete('/edit/:id', async (req: Request, res: Response) => {
+    router.put('/edit/:id', async (req: Request, res: Response) => {
         const response = Object.assign({}, APIResponse);
 
         try {

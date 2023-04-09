@@ -1,8 +1,14 @@
+import moment from "moment";
 import Event from "../models/Event.model";
 import prisma from "../prisma/Prisma";
 
 export const getAllEvent = async () => {
-    const Events = await prisma.event.findMany({});
+    const Events = await prisma.event.findMany({
+        include: {
+            Location: true,
+            Organizer: true
+        }
+    });
     return Events;
 }
 
@@ -16,7 +22,7 @@ export const createEvent = async (body: Event) => {
     const createdEvent = await prisma.event.create({
         data: {
             Name: name,
-            Date: date,
+            Date: moment(date).toDate(),
             Description: description,
             Location: {
                 connect: {

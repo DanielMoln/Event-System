@@ -2,7 +2,7 @@ interface Event {
     name: string,
     date: string,
     description: string,
-    timepoint: Date,
+    timepoint: string,
     location: number,
     organizer: number
 }
